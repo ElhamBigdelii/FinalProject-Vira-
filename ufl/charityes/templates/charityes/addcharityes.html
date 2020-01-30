@@ -1,0 +1,248 @@
+
+{% extends 'base.html' %}
+
+{% block content%}
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+
+
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 20px;
+  width: 60%;
+  min-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+#axform {
+    width: 40%;
+    background-color: cornflowerblue;
+    height: 500px;
+    float: left;
+}
+
+h5 {
+  text-align: right; 
+  padding: 10px; 
+  color: rgb(75, 75, 75);
+}
+
+input {
+  padding: 8px;
+  width: 31%;
+  font-size: 15px;
+  border: 1px solid #ffffff;
+  border-radius: 15px;
+  text-align: right;
+  margin-left:48%;
+  background-color: #EFF4F4;
+  outline: none;
+  
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+  border-radius: 15px;
+}
+#nextBtn {
+    border-radius: 15px;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+</style>
+
+
+<form id="regForm" action="{% url 'charityes:add_charitye' %}" method="POST">
+    
+  {% csrf_token %}
+  
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">
+    <div style="background-color: rgb(247, 247, 247); border-radius: 15px; width: 52%;margin-left: 48%;">
+        <h5>اطلاعات مرکز خیریه</h5>
+       
+    </div> <br>
+    <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">نام موسسه خیریه</p>
+    <p><input placeholder="نام خیریه را وارد کنید" oninput="this.className = ''" name="name"></p>
+    <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">تاریخ تاسیس</p>
+    <p><input placeholder="تاریخ تاسیس را وارد کنید" oninput="this.className = ''" name="date_tasisi"></p>
+    <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">وب سایت خیریه</p>
+    <p><input placeholder="وب سایت خیریه را وارد کنید" oninput="this.className = ''" name="web"></p>
+    <p style="float: right; background-color:none; padding: 8px;font-size: 15px;">شماره تلفن مرکز خیریه</p>
+    <p><input placeholder="شماره تلفن مرکز خیریه را وارد کنید" oninput="this.className = ''" name="phone_markaz"></p>
+    <p style="float: right; background-color:none; padding: 8px;font-size: 15px;">شماره ثبت خیریه</p>
+    <p><input placeholder="شماره ثبت خیریه را وارد کنید" oninput="this.className = ''" name="sabt_number"></p>
+    <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">آدرس مرکز خیریه</p>
+    <p><input placeholder="آدرس مرکز خیریه را وارد کنید" oninput="this.className = ''" name="address"></p>
+    <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">تصویر مجوز خیریه </p>
+    <p><input placeholder="تصویر مجوز" oninput="this.className = ''" name="image" type="file"></p>
+
+  </div>
+
+
+  <div class="tab">
+      <div style="background-color: rgb(247, 247, 247); border-radius: 15px; width: 52%;margin-left: 48%;">
+      <h5>اطلاعات مدیر خیریه</h5>
+      </div> <br>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">نام</p>
+      <p><input placeholder="نام مدیر خیریه را وارد کنید" oninput="this.className = ''" name="firstname"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">نام خانوادگی</p>
+      <p><input placeholder="نام خانوادگی مدیر خیریه را وارد کنید" oninput="this.className = ''" name="lastname"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">کدملی</p>
+      <p><input placeholder="کدملی مدیر خیریه را وارد کنید" oninput="this.className = ''" name="codemeli"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">نام کاربری</p>
+      <p><input placeholder="یک نام کاربری انتخاب کنید" oninput="this.className = ''" name="username"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">رمز عبور</p>
+      <p><input placeholder="رمز عبور انتخاب کنید" oninput="this.className = ''" name="password"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">تکرار رمز عبور</p>
+      <p><input placeholder="رمز عبور را تکرار کنید" oninput="this.className = ''" name="password"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">ایمیل</p>
+      <p><input placeholder="ایمیل مدیر خیریه را وارد کنید" oninput="this.className = ''" name="email"></p>
+      <p style="float: right; background-color: none; padding: 8px;font-size: 15px;">شماره تماس</p>
+      <p><input placeholder="شماره تماس را وارد کنید" oninput="this.className = ''" name="phone"></p>
+  </div>
+
+
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">قبلی</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)" value="بعدی">بعدی</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "ثبت";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "بعدی";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+</body>
+</html>
+
+
+{% endblock %}

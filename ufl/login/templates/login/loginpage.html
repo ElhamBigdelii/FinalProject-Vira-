@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+<div class="container-fluid">
+    <div class="login_div">
+        <div class="login_div_left">
+            <img src="http://uupload.ir/files/m31c_login.png">
+        </div>
+    <form  name="myForm" action="{% url 'login:loginpage' %}" method="POST" id="add_form" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div class="login_div_right"> <!سمت راست و فرم برای ورود>
+            <div  class="login_div_right_titre"> <p>ورود</p>
+            </div>
+
+            <div class="login_div_right_sub">
+                <p>به "چتری برای زندگی" خوش اومدی<br>
+                بیا که با مهر خودمون لبخند به دیگران هدیه بدیم 
+                </p>
+            </div>
+
+            <div class="login_form">
+                <div class="login_form_part">
+                <input type="text" id="username" name="username" placeholder="نام کاربری/ایمیل">
+                </div>
+                <input type="password" id="password" name="password" placeholder="رمز عبور">
+
+                <button type="submit" class="btn btn-pardakht" style="margin: 10px 38px; text-align:center">ورود</button>
+            </div>
+
+            <div class="login_faramooshi_signup">
+            <a href=""><p>هنوز ثبت نام نکردی؟</p></a>
+            <a  href=""><p>رمز عبور رو فراموش کردی؟</p></a>
+            </div>
+
+        </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
