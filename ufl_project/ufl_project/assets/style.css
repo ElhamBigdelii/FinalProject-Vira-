@@ -1909,7 +1909,7 @@ padding: 10px 5px;
 /****** دکمه توخالی*/
 .btn22 {
   border: 2px solid black;
-  background-color: white;
+  background-color: none;
   color: black;
   padding: 8px 25px;
   font-size: 16px;
@@ -1957,4 +1957,17 @@ padding: 10px 5px;
   transition:all 0.3s ease;
   transform: scale(1.01);
  
+}
+.edit_profile_background{
+  background-image: url(../static/pic/edite.png);
+  width: 100%;
+  height: 690px;
+  margin-left: 0%;
+  padding: 20px;
+  text-align: center;
+  font-size: 17px;
+  background-color: none;
+  /*background-image: url(../static/pic/profile_modir.png);*/
+  background-size: cover;
+  background-repeat: no-repeat;
 }

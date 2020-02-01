@@ -52,6 +52,11 @@
                 {% csrf_token %}
             <label  class="laballoginsignupfor="id_username">کدملی</label><input class="form-control" type="text" name="username" autofocus="" required="" id="id_username">
             <label class="laballoginsignup for="id_password">رمز عبور</label><input  class="form-control" type="password" name="password" required="" id="id_password"><br><br><br>
+            
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            
             <input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ورود">
             </form>
              <input style="float: left ;" id="sabtnam" class="btn22 success22" type="input" ,="" value="ثبت نام">

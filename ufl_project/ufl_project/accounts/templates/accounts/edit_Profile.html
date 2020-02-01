@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="edit_profile_background">
+    <div class="form_div_loginsiup">
+        <div class="titr_login_signup">
+            <p>ویرایش اطلاعات</p>
+        </div>
+        <div class="login_signupformss">
+            <form class="site-form" action="{% url 'accounts:signup' %}" method="POST">
+                {% csrf_token %}
+                    <label class="laballoginsignup" for="id_first_name">نام</label><input class="form-control" type="text" name="first_name" maxlength="30" id="id_first_name">                    <label for="id_last_name">نام خانوادگی</label><input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name">
+                    <label class="laballoginsignup" for="id_email">ایمیل</label><input type="email" class="form-control" name="email" required="" id="id_email">
+                    <label class="laballoginsignup" for="id_password1">رمز عبور</label><input type="password"class="form-control"  name="password1" required="" id="id_password1">
+                    <br><br><input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ویرایش">
+                </form>
+                <input style="float: left ;" id="vorod" class="btn22 success22" type="input" ,="" value="انصراف">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
