@@ -20,34 +20,31 @@ def signup_users(request):
 
 def loginpage(request):
     if request.method == 'POST':
+        username = request.POST['username']
         form2 = AuthenticationForm (data=request.POST)
         if form2.is_valid():
             user = form2.get_user()
+            request.session['username'] = username
             login (request,user)
             if 'next' in request.POST:
                 return redirect('accounts:login')
-            return redirect('accounts:signup')
+            return redirect('accounts:profil_accounts')
         else:
             form2 = AuthenticationForm()
     return render(request , 'accounts/signup.html' , {'form2':form2})
 
-@login_required(login_url="/accounts/loginpage/")
-def profile(request):
+
+
+def view_profile(request):
     if request.session.has_key('username'):
         posts = request.session['username']
         query = User.objects.filter(username=posts) 
         return render(request, 'accounts/Profile.html', {"query":query})
     else:
-        return render(request, 'accounts/signup.html', {})
+        return render(request, 'accounts/Profile.html', {})
 
 
-@login_required(login_url="/accounts/loginpage/")
-def view_profile(request):
-        args={'user':request.user}
-        return render (request , 'accounts/Profile.html' , args)
 
-
-@login_required(login_url="/accounts/loginpage/")
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfile(request.POST , instance=request.user)
@@ -58,5 +55,4 @@ def edit_profile(request):
 
     else:
         form = EditProfile(instance=request.user)
-        args = {'form':form}
-        return render(request , 'accounts/edit_profile.html' , args)
+    return render(request , 'accounts/edit_profile.html' , {"form":form})

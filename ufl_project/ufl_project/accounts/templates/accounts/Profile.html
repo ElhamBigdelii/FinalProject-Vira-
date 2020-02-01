@@ -98,7 +98,7 @@ input {
                     <!فرم ویرایش اطلاعات کاربر>
                 <form  method="POST" >
                 {% csrf_token %}
-                {{ form }}
+    
                     <div class="edite_profile">
                         <div class="right_edite_profile_user">
                             <p class="lable_virayesh_profile_kheiriye">نام</p><br>
@@ -118,7 +118,7 @@ input {
                         <br><input placeholder="{{ post.email }}" name="email"><br>
                         <br><input placeholder="{{ post.password }}"  name="password"><br>
                         {% csrf_token %}
-                        {{ form.as_p }}
+                      
 
                         <button type="submit" class="btn btn-sherkatmikonam  float-sm-none" style="width: 20%; float: left; margin-left: 50%;">ثبت</button> 
                         <button type="button" class="btn btn-sherkatmikonam float-sm-none " style="width: 20%; float: left; margin-left: 50%; background-color: rgb(224, 73, 73);">انصراف</button> 
