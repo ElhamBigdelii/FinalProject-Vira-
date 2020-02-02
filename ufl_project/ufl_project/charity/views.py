@@ -24,3 +24,28 @@ def charityadd(request):
     else:
         form = forms.Creatcharity()
     return render(request, 'charity/add_charity.html' , {'form':form})
+
+
+@login_required(login_url="/accounts/loginpage/")
+def addProject(request):
+    if request.method=='POST':
+       form= forms.addProject(request.POST)
+       if form.is_valid():
+        instance=form.save(commit=False)
+        instance.modir=request.user
+        instance.save()
+        return redirect('charity:addProject')
+    else:
+        form = forms.addProject()
+    return render(request, 'charity/addProject.html' , {'form':form})
+
+
+
+
+    #if request.method=='POST':
+     #   request.user.id
+      #  form= forms.addProject(request.POST)
+       # modirId=request.user
+        #return render(request,'charity/addProject.html', {'form':form,'modirId':modirId})
+    
+

@@ -20,8 +20,35 @@ class Charity(models.Model):
     sabt_number = models.CharField(max_length=30)
     description = models.TextField()
     web = models.URLField()
-    modir = models.ForeignKey(User , on_delete=models.CASCADE )
+    modir = models.ForeignKey(User , on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
    
+
+
+class ProjectType(models.Model):
+    title = models.TextField(max_length=50)
+    description = models.TextField()
+    #projectType = models.ForeignKey(ProjectType, on_delete = models.CASCADE)
+    
+    def __str__(self):
+        return self.title
+
+
+
+class Project(models.Model):
+    title = models.TextField(max_length=50)
+    cost = models.FloatField()
+    endDate = models.DateField()
+    startDate = models.DateField()
+    publishDate = models.DateTimeField()
+    rejistrationDate = models.DateTimeField(auto_now_add= True)
+    description = models.TextField()
+    modir= models.ForeignKey(Modir, on_delete=models.CASCADE)
+    projectType = models.ForeignKey(ProjectType, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+

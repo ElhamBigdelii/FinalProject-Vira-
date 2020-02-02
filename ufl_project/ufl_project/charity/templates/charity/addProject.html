@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+ <h1>This is addProject page</h1>
+ <form action="{%url 'charity:addProject'%}" method="POST">
+    {% csrf_token %}
+    <table>
+        {%for field in form%}
+            <tr><td>{{field}}</td></tr>
+        {%endfor%}
+    </table>
+    <input type="submit" value="Create"/>   
+ </form>
+{% endblock %}
