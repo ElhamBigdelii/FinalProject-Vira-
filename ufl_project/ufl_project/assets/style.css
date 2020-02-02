@@ -160,9 +160,9 @@ div.head_golrizoon{
   float: center;
   
 }
-.btn{
+/*.btn{
     background-color: #21b76f;
-}
+}*/
 
 .btn-pardakht:hover {
   background-color: #21b76f;
@@ -1970,4 +1970,48 @@ padding: 10px 5px;
   /*background-image: url(../static/pic/profile_modir.png);*/
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.bg-dark {
+  background-color:  rgb(249, 249, 249) !important;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2);
+}
+
+a.bg-dark:hover, a.bg-dark:focus,
+button.bg-dark:hover,
+button.bg-dark:focus {
+  background-color: #1d2124 !important;
+}
+
+
+.navbar-dark .navbar-brand {
+  color: rgb(53, 94, 141);
+  font-weight: bold;
+}
+
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+  color: rgb(126, 159, 197);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(74, 133, 172);
+  font-size: 16px;
+  padding-right: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: rgb(46, 101, 165);
+  
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: rgb(23, 81, 116);
+  font-weight: bold;
 }

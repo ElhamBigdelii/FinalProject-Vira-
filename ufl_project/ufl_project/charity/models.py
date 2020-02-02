@@ -20,7 +20,10 @@ class Charity(models.Model):
     sabt_number = models.CharField(max_length=30)
     description = models.TextField()
     web = models.URLField()
-    modir = models.ForeignKey(User , on_delete=models.CASCADE)
+    photo = models.ImageField(blank=True)
+    photo_sanad = models.ImageField(default='default.png')
+    modir = models.ForeignKey(User , on_delete=models.CASCADE )
+    accept = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -50,5 +53,4 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-
 

@@ -11,8 +11,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url="/accounts/loginpage/")
-
+@login_required(login_url="/accounts/signup_login/")
 def charityadd(request):
     if request.method=='POST':
        form= forms.Creatcharity(request.POST)

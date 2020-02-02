@@ -11,3 +11,4 @@ class addProject(forms.ModelForm):
     class Meta:
         model=models.Project
         fields=['title','cost','endDate','startDate','publishDate','rejistrationDate','description','projectType']
+        fields=['name','address','sabt_number','description','web' , 'photo_sanad']
