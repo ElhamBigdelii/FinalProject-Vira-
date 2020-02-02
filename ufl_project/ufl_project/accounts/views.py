@@ -17,24 +17,26 @@ def signup_users(request):
         form = RegistrationForm()
     return render(request , 'accounts/signup.html' , {'form':form}) 
 
+def test(request):
+    return render(request , 'accounts/test.html')
 
 def loginpage(request):
     if request.method == 'POST':
         username = request.POST['username']
         form2 = AuthenticationForm (data=request.POST)
         if form2.is_valid():
+            request.session['username'] = username
             user = form2.get_user()
             
             login (request,user)
             if 'next' in request.POST:
-                return redirect('accounts:login')
-            request.session['username'] = username
+                request.session['username'] = username
             return redirect('accounts:profil_accounts')
         else:
             form2 = AuthenticationForm()
     return render(request , 'accounts/signup.html' , {'form2':form2})
 
-
+@login_required(login_url="/accounts/signup_login/")
 def view_profile(request):
     if request.session.has_key('username'):
         posts = request.session['username']
@@ -44,7 +46,7 @@ def view_profile(request):
         return render(request, 'accounts/Profile.html', {})
 
 
-
+@login_required(login_url="/accounts/signup_login/")
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfile(request.POST , instance=request.user)
@@ -56,3 +58,11 @@ def edit_profile(request):
     else:
         form = EditProfile(instance=request.user)
     return render(request , 'accounts/edit_profile.html' , {"form":form})
+
+@login_required(login_url="/accounts/signup_login/")
+def logout_viwe(request):
+    if request.method=='POST':
+        logout(request)
+        return redirect('accounts:test')
+
+    
