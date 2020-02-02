@@ -24,15 +24,15 @@ def loginpage(request):
         form2 = AuthenticationForm (data=request.POST)
         if form2.is_valid():
             user = form2.get_user()
-            request.session['username'] = username
+            
             login (request,user)
             if 'next' in request.POST:
                 return redirect('accounts:login')
+            request.session['username'] = username
             return redirect('accounts:profil_accounts')
         else:
             form2 = AuthenticationForm()
     return render(request , 'accounts/signup.html' , {'form2':form2})
-
 
 
 def view_profile(request):
