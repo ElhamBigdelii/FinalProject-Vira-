@@ -1,0 +1,281 @@
+
+{% extends 'base_nav_index.html' %}
+
+{% block content %}
+
+<div class="header_background">
+
+
+    <nav class="navbar2 navbar-expand-sm bg-dark2 navbar-dark" style=" width: 100%;  ">
+        <!-- Brand -->
+        <nav>
+            <ul>
+                <li>
+                   <form action="{% url 'accounts:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-Defoult" type="submit">خروج</button>
+                   </form> 
+                </li>
+            </ul>
+        </nav>
+      
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#sesoote">کمک سه‌سوته</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'charity:addCharity' %}">ثبت خیریه</a>
+          </li>
+      
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              انواع کمک
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'charity:golrizooon' %}">گلریزون‌ها</a>
+              <a class="dropdown-item" href="#">کمپین‌ها</a>
+              <a class="dropdown-item" href="{% url 'charity:little_dream' %}">آرزوهای‌کوچک</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:signup' %}">ورود/ثبت‌‌نام</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index:show_index' %}">صفحه اصلی</a>
+          </li>
+          <a class="navbar-brand " href="#">چتری برای زندگی</a>
+        </ul>
+
+      </nav>
+
+
+
+
+
+
+
+    <div class="title_header">
+        <p>چتری برای زندگی</p>
+    </div>
+
+    <div class="subtitle_header">
+        <p> بستری امن برای کمک کردن و هدیه دادن لبخند به نیازمندان عزیز</p><br>
+    </div>
+
+    <div class="boldbottun">&nbsp 
+      <a href="{% url 'charity:addCharity' %}"><button type="button" class="btn btn-sabtkheireye float-sm-none">ثبت خیریه</button></a> &nbsp  &nbsp &nbsp &nbsp &nbsp 
+       <a href="{% url 'charity:golrizooon' %}"><button type="button" class="btn btn-sabtkheireye float-sm-none" style="background-image: linear-gradient(-90deg, #6088ff, #2fd6e8);">گلریزون‌ها</button></a>
+    </div>
+
+</div>
+
+
+<div style="width:100% ; height:auto; background-color:none">
+    <div class="headergolrizoon">
+
+        <div class="headergolrizoon-title">
+        <p>گلریزون‌ها</p>
+        </div>
+
+<div class="kadrcard"> <!برای کادر بندی کارت ها>
+    {% for post in posts %}
+        <div class="totalcard">
+            <div class="cardgolrizzon">
+                <div class="cardgolrizzon-image">
+                </div>
+    
+                <div class="cardgolrizzon-titre">
+                <p>{{ post.title }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-sub">
+                <p>{{ post.description | truncatechars:50 }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-price">
+              {{ post.cost }} : مبلغ باقیمانده
+                </div>
+    
+                <div class="cardgolrizzon-pricebaghi">
+                : مبلغ کل
+                </div>
+            </div>
+            
+            <!جای دکمه شرک  میکنم>
+             <button type="submit" class="btn btn-sherkatmikonam  float-sm-none">مشارکت می‌کنم</button> 
+            <!جای دکمه شرک  میکنم>
+            </div> 
+            <!پایان کارت ها>   
+        {% endfor %}
+        <!پایان کارت ها>   
+
+    </div>  
+    <div class="bishtarrr">
+        <a href="{% url 'charity:golrizooon' %}"><button type="button" class="btn btn-sabtkheireye float-sm-none" style=" background-image: linear-gradient(-90deg, #4c68ff, #eb88ff); width:170px;">مشاهده همه</button></a>
+   </div>
+</div> <!تموم شدن کارد اصلی>
+<!................................................... گلریزونها ....................................>
+
+<br><br><br>
+<!--شروع کمکهایی که یه کوچولو مونده-->
+<div class="liitlehelp">
+    <div class="liitlehelp-title">
+    <p>!یه کوچولو کمک کنی تموم میشه</p>
+    </div>
+<!--چندتا کارت بزارم با تگ فوری سمت چپ و یه توضیح سمت راست-->
+        <div class="liitlehelp-seb">
+            <p> بعضی از نیازنمندی‌ها به مقدار کمی کمک نیاز دارند تا مکیل بشن. آخرین قطره این دریا را شما بچکانید
+            </p>
+        </div>
+
+
+        <!--کارتهای لحظه آخری-->
+    <div class="liitlehelp_cards">
+
+        {% for post in posts3 %}
+        <div class="totalcard">
+            <div class="cardgolrizzon">
+                <div class="cardgolrizzon-image"><span class="badge badge-warning">!فوری</span>
+                </div>
+    
+                <div class="cardgolrizzon-titre">
+                <p>{{ post.title }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-sub">
+                <p>{{ post.description | truncatechars:50 }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-price">
+              {{ post.cost }} : مبلغ باقیمانده
+                </div>
+    
+                <div class="cardgolrizzon-pricebaghi">
+                : مبلغ کل
+                </div>
+            </div>
+            
+            <!جای دکمه شرک  میکنم>
+             <button type="submit" class="btn btn-sherkatmikonam  float-sm-none">مشارکت می‌کنم</button> 
+            <!جای دکمه شرک  میکنم>
+            </div> 
+            <!پایان کارت ها>   
+        {% endfor %}
+        <!پایان کارت ها>  
+
+   <!--برای کادر بندی کارت ها-->
+<div class="liitlehelp_bishatr">
+                 <button type="button" class="btn btn-sherkatmikonam  float-sm-none" style=" background-image: linear-gradient(-90deg, #4c68ff, #eb88ff); width:170px;">مشاهده همه</button> 
+        </div>
+
+
+    </div>
+
+    </div>
+
+
+</div>
+<!--پایان کمکهایی که یه کوچولو مونده-->
+<!....................................................... آمار ............................>
+    <div class="amar">
+        <div class="amar_title">
+            <p>آمار و ارقام</p>
+        </div>
+
+        <div class="amar_content">
+            <div class="amar_content_part">
+                <p>512</p>
+            </div>
+            <div class="amar_content_part">
+                <p>1126</p>
+            </div>
+            <div class="amar_content_part">
+                <p>431</p>
+            </div>
+            
+            <div class="amar_content_part_below">
+                <p>خیریه‌ها</p>
+            </div>
+              <div class="amar_content_part_below">
+                <p>اعضای سایت</p>
+            </div>
+              <div class="amar_content_part_below">
+                <p>نیازهای تکمیل شده</p>
+            </div>
+
+        </div>
+    </div>
+
+<!.................................. سه سووووته ........................................>
+
+<div class="sesoote_help" id="sesoote">
+    <div class="sesoote_help_title">
+        <p>!کمک سه سوته</p>
+    </div>
+    <div class="sesoote_help_sub">
+        <p>!از اینجا می‌تونی سه‌سوته کمک کنی</p>
+        <p>ما این کمک‌ها رو برای نیازهای پر اولویت قرار می‌دیم</p>
+    </div>
+    <div class="sesoote_help_content">
+            <div class="sesoote_help_card">
+                <div class="sesoote_help_card_title">
+                    <p>نوع کمک</p>
+                </div>
+                <select class="form-control">
+                <option value="volvo">گلریزون‌ها</option>
+                <option value="saab">آرزوهای کوچک</option>
+                <option value="opel">کمپین‌ها</option>
+                </select>
+                <br><br>
+                <div class="sesoote_help_card_title_mablagh">
+                    <p>به مبلغ زیر در شادی نیازمندان سهیم می‌شوم</p>
+                </div>
+                <br><input class="form-control" type="number"  step="10000" min="10000" id="username" name="username" placeholder="مبلغ به ریال">
+                <br>
+                <button type="button" class="btn btn-sherkatmikonam  float-sm-none coustum_btn_sherkat">مشارکت می‌کنم</button> 
+
+
+            </div>
+    </div>
+</div>
+
+<!................................. FOOTER ........................>
+<div class="footerfinal">
+    <div class="footerfinal_content">
+        <div class="footerfinal_content_title">
+             </p>شبکه‌های اجتماعی<p>
+             <hr/>
+        </div>
+            <div class="footerfinal_content_detail">
+            </div>
+    </div>
+
+     <div class="footerfinal_content2">
+         <div class="footerfinal_content_title">
+         </p>درباره چتری برای زندگی<p>
+         <hr/>
+         </div>
+            <div class="footerfinal_content_detail">
+                <p>چتری برای زندگی بستری امن برای کمک به نیازمندان است. انواع نیازنمندی‌ها در این بستر تفکیک شده‌اند به گلریزون‌ها، آرزوهای کوچک و کمپین ها</p>
+                <p> !به ما بپیوندید! به کمکتون نیاز داریم
+                </p>
+                <button type="button" class="btn btn-sabtkheireye float-sm-none" style="background-image: linear-gradient(-90deg, #6088ff, #2fd6e8);">عضویت</button>
+
+            </div>
+    </div>
+
+     <div class="footerfinal_content3">
+        <div class="footerfinal_content_title">
+            </p>دسترسی سریع<p>
+            <hr/>
+         </div>
+            <div class="footerfinal_content_detail">
+                <a href=""><p>درباره ما</p></a>
+                 <a href=""><p>تماس با ما</p></a>
+            </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="background_LD">
+
+
+<div class="goli">
+<div class="kadrcard_goli">
+    <div class="titr_for_gol_campain_dream">
+        <p>آرزوهای کوچک</p>
+    </div ><br><br>
+    {% if posts %}
+        {% for post in posts.object_list %}
+        <div class="totalcard">
+            <div class="cardgolrizzon">
+                <div class="cardgolrizzon-image">
+                </div>
+    
+                <div class="cardgolrizzon-titre">
+                <p>{{ post.title }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-sub">
+                <p>{{ post.description | truncatechars:50 }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-price">
+              {{ post.cost }} : مبلغ باقیمانده
+                </div>
+    
+                <div class="cardgolrizzon-pricebaghi">
+                : مبلغ کل
+                </div>
+            </div>
+            
+            <!جای دکمه شرک  میکنم>
+             <button type="submit" class="btn btn-sherkatmikonam  float-sm-none">مشارکت می‌کنم</button> 
+            <!جای دکمه شرک  میکنم>
+            </div> 
+            <!پایان کارت ها>   
+        {% endfor %}
+    {% endif %}
+        
+        <div class="righ_search_filter">
+            <div class="righ_search_filter_in">
+            <label class="labe_search" for="sel1">: فیلتر بر اساس</label>
+            <br><br><select class="form-control" id="sel1" >
+              <option>ورزشی</option>
+              <option>لوازم تحریر</option>
+              <option>عروسک</option>
+              <option>اسباب بازی</option>
+            </select>
+
+            <br><select class="form-control" id="sel1" >
+                <option>خیریه1</option>
+                <option>جهیزیه</option>
+                <option>مسکن</option>
+                <option>تحصیل</option>
+              </select>
+
+
+            </div>
+        </div>      
+
+</div>  
+<br><br>  <br><br> 
+<div class="pagination" id="menu">
+    <ul >
+    {% if posts.has_previous %}
+        <li><a href="?page={{posts.previous_page_number}}">قبلی</a></li>
+    {% endif %}
+
+    {% for pg in posts.paginator.page_range %}
+        {% if posts.number == pg %}
+            <li class="active"><a href="?page={{pg}}"><p>{{ pg }}</p></a></li>
+        {% else %}
+        <li ><a href="?page={{pg}}">{{ pg }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if posts.has_next %}
+        <li><a href="?page={{posts.next_page_number}}">بعدی</a></li>
+    {% endif %}
+
+</ul>
+</div>
+
+</div>
+</div>
+<br><br><br>
+{% endblock %}
