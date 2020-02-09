@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="detail_Background">
+<div class="div_detail">
+    <div class="form_dtail">
+        <div class="right_detail">
+            <div class="detail_tilte">
+                <p>{{ posts.title }}</p>
+            </div>
+            <hr>
+            <div class="titr_kheiriye">
+                <p>{{ posts.charity.name }} : خیریه <i class='fas fa-seedling'></i></p>
+            </div>
+            <div class="titr_daste">
+                <p>{{ posts.dastebandy_G }} : دسته بندی</p>
+            </div>
+            <div class="titr_mablagh">
+                <p> {{ posts.cost }} : مبلغ</p>
+            </div>
+            <div class="titr_mablaghmande">
+                <p>مبلغ باقی مانده</p>
+            </div>
+            <div class="description_detail">
+                <p>{{ posts.description }}</p>
+            </div>
+        </div>
+        <div class="left_detail">
+            <div class="titr_left_detail">
+                <br><p>به مبلغ زیر در شادی نیازمندان سهیم می‌شوم</p>
+            </div>
+            <br><input  class="form-control" type="number" placeholder="مبلغ مورد نظر را وارد کنید" name="search" style="font-size: 13px; color: rgb(163, 163, 163); width: 90%;margin-left: 5%;">
+            <br><button type="submit" class="btn btn-sherkatmikonam  float-sm-none" style="width: 90%; margin-right: 5%;">پرداخت</button> 
+            
+            <div class="picleft_detail">
+
+            </div>
+        </div>
+    </div>
+    <br><a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary" style="font-size: 12px; float: left;margin-left: 15%; border-radius: 5px;">برگشت</a>
+
+</div>
+</div>
+
+{% endblock %}
