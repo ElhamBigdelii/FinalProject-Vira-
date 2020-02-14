@@ -1,0 +1,15 @@
+
+{% extends 'base_withot_footer.html' %}
+
+
+{% block content %}
+{% for charit in charit %}
+
+{% if charit.photo %} 22222
+    <img src="/media/{{ charit.photo.url }}">
+{% endif %}
+   
+    <br><br><br><br><br>{{ charit.name }}
+{% endfor %}
+
+{% endblock %}

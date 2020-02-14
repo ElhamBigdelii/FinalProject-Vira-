@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="background_charitypic">
+
+
+<div class="goli">
+    
+<div class="kadrcard_goli2" >
+    <div class="titr_for_gol_campain_dream">
+        <p>خیریه‌ها</p>
+    </div ><br><br>
+    <div class="kadrcard_goli22">
+    
+    {% if posts %}
+        {% for post in posts.object_list %}
+        <div class="totalcard">
+            <div class="cardgolrizzon">
+                <div class="cardgolrizzon-image">
+                    {% if post.photo %}
+                    <a href="{% url 'charity:detail_charity' pk=post.pk %}"><img src="{{ post.photo.url }}"></a>
+                    {% endif %}
+                </div>
+                <div class="cardgolrizzon-titre">
+                <p> خیریه {{ post.name }}</p>
+                
+                </div>
+    
+                <div class="cardgolrizzon-sub">
+                <p>{{ post.description | truncatechars:100 }}</p>
+                </div>
+    
+                <div class="cardgolrizzon-price">
+              {{ post.web }} : وبسایت
+                </div>
+    
+                <div class="cardgolrizzon-pricebaghi">
+                     آدرس: {{ post.address | truncatechars:20 }} 
+                </div>
+            </div>
+            
+            <!جای دکمه شرک  میکنم>
+             <a href="{% url 'charity:detail_charity' pk=post.pk %}"><button type="submit" class="btn btn-sherkatmikonam  float-sm-none">مشاهده خیریه</button> </a>
+            <!جای دکمه شرک  میکنم>
+            </div> 
+            <!پایان کارت ها>   
+        {% endfor %}
+    {% endif %}
+        
+        
+    </div>
+    <div class="righ_search_filter">
+        <div class="righ_search_filter_in">
+       <br><br> <label class="labe_search" for="sel1">:خیریه را جستجو کنید</label>
+        <br><br>
+        <div class="search-container">
+            <form action="/action_page.php">
+              <input  class="form-control" type="text" placeholder="نام خیریه را وارد کنید" name="search" style="font-size: 15px;">
+              <br><br>
+              <a href=""><button type="button" class="btn btn-sabtkheireye float-sm-none" style="background-image: linear-gradient(-90deg, #6088ff, #2fd6e8); height: 40px;">  <i class="fa fa-search" style="font-size: 15px;"></i>    جستجو  </button></a></button>
+            </form>
+          </div>
+          <br><br>
+        </div>
+    </div><br><br>      
+</div> 
+</div> 
+<br><br>  <br><br><br><br>
+<div class="pagination" id="menu">
+    <ul >
+    {% if posts.has_previous %}
+        <li><a href="?page={{posts.previous_page_number}}">قبلی</a></li>
+    {% endif %}
+
+    {% for pg in posts.paginator.page_range %}
+        {% if posts.number == pg %}
+            <li class="active"><a href="?page={{pg}}"><p>{{ pg }}</p></a></li>
+        {% else %}
+        <li ><a href="?page={{pg}}">{{ pg }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if posts.has_next %}
+        <li><a href="?page={{posts.next_page_number}}">بعدی</a></li>
+    {% endif %}
+
+</ul>
+</div>
+<a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary" style="font-size: 12px; float: left;margin-left: 5%; border-radius: 5px;">برگشت</a>
+
+</div>
+</div>
+<br><br><br>
+{% endblock %}

@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="{% static 'myjs.js' %}"></script>
+        <!حذف کردن دایوهای موجود و نمایش فرم ویرایش>
+        <script> 
+            $(document).ready(function(){
+                $(".edite_profile").hide();
+                $(".virayesh1").click(function(){
+                    $(".box_form_profile_kheiriye").hide();
+                    $(".left_sotoon").hide();
+                    $(".edite_profile").show(1000);
+                });
+            });
+
+            $(document).ready(function(){
+                $(".virayesh0").click(function(){
+                    $(".box_form_profile_kheiriye").show(1000);
+                    $(".left_sotoon").show(1000);
+                    $(".edite_profile").hide();
+                });
+            });
+
+
+        </script>
+<style>
+input {
+  width: 60%;
+  padding: 8px;
+  font-size: 15px;
+  border: 1px solid #ffffff;
+  border-radius: 15px;
+  text-align: right;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  color: rgb(138, 138, 138);
+  float: right ;
+  box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.05);
+  
+  padding-top: 2px;
+}
+</style>
+    </head>
+
+        <body>
+            <div class="backgroundprofile">
+
+                <div class="rightprofile_charity">
+                    <div class="profilecirclepic">
+                    </div>
+
+                        <div class="list_meno_profile_kheirire" >
+                            <a class="virayesh0" id = "GFG" href = "#" style=" color: rgb(13, 68, 139);"><p>پروفایل</p></a>
+                            <a class="virayesh1" id = "GFG" href = "#" style=" color: rgb(13, 68, 139);"><p>ویرایش پروفایل</p></a>
+                            <a id = "GFG" href = "{% url 'charity:addProject' %}" style=" color: rgb(13, 68, 139);"><p>اضافه کردن گلریزون</p></a>
+                            <a id = "GFG" href = "#" style=" color: rgb(13, 68, 139);"><p>اضافه کردن آرزوی کوچک</p></a>
+                            <a id = "GFG" href = "#" style=" color: rgb(13, 68, 139);"><p>اضافه کردن کمپین</p></a>
+                            <a id = "GFG" href = "#" style=" color: rgb(1, 55, 136);"><p>حذف خیریه</p></a>
+
+                        </div>
+                </div>
+
+                
+
+                    <div class="titr_profilr_kheiriye">
+                        {% for charity in charitymodir %}
+                        <p>{{ charity.name }} : نام خیریه</p>
+                        {% endfor %}
+                            <hr>
+
+                        {% for modir in query %}
+                        <div class="titr_profilr_kheiriye_modir">
+                            <p>{{ modir.username }} : کدملی مدیر</p>
+                        </div>
+                        {% endfor %}
+                        
+
+                        <div class="box_form_profile_kheiriye" id="map">
+                            <div class="box_form_profile_kheiriye_right">
+                                <p  class="lable_ofprofilr_kh">نام موسسه خیریه</p>
+                                <p class="lable_ofprofilr_kh">سال تاسیس</p>
+                                <p class="lable_ofprofilr_kh">وب سایت</p>
+                                <p class="lable_ofprofilr_kh">تلفن مرکزی</p>
+                                <p class="lable_ofprofilr_kh">آدرس مرکز</p>
+                                <p class="lable_ofprofilr_kh">نام کارشناس</p>
+                                <p class="lable_ofprofilr_kh">توضیحات</p>
+                            </div>
+
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="input_profile_kheiriye"></div>
+                            <div class="tozihat_profilr_kheiriye"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <!فرم ویرایش اطلاعات کاربر>
+                    <div class="edite_profile">
+                        <div class="right_edite_profile">
+                            <p class="lable_virayesh_profile_kheiriye">نام خیریه</p>
+                            <p class="lable_virayesh_profile_kheiriye">سال تاسیس</p>
+                            <p class="lable_virayesh_profile_kheiriye">وب سایت</p>
+                            <p class="lable_virayesh_profile_kheiriye">تلفن مرکزی</p>
+                            <p class="lable_virayesh_profile_kheiriye">آدرس مرکز</p>
+                            <p class="lable_virayesh_profile_kheiriye">نام کارشناس</p>
+                            <p class="lable_virayesh_profile_kheiriye">توضیحات</p>
+                        </div>
+                        <input placeholder="نام خیریه"  name="web"><br>
+                        <br><input  placeholder="سال تاسیس"  name="web"><br>
+                        <br><input placeholder="وب سایت"  name="web"><br>
+                        <br><input placeholder="تلفن مرکزی"  name="web"><br>
+                        <br><input placeholder="آدرس مرکز"  name="web"><br>
+                        <br><input placeholder="نام کارشناس" name="web"><br>
+                        <br><input placeholder="توضیحات"  name="web"><br>
+
+                        <button type="submit" class="btn btn-sherkatmikonam  float-sm-none" style="width: 20%; float: left; margin-left: 50%;">ثبت</button> 
+                        <button type="submit" class="btn btn-sherkatmikonam float-sm-none " style="width: 20%; float: left; margin-left: 50%; background-color: rgb(224, 73, 73);">انصراف</button> 
+
+                    </div>
+                    <!فرم ویرایش اطلاعات کاربر>
+
+                    <div class="left_sotoon">
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <p>تعداد خیرین</p>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>215</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <p>مقدار کمک</p>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>2015</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <a id = "GFG" href = "#" style="color: rgb(136, 152, 180);"><p>تکمیل شده‌ها</p></a>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>3265</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+            </div>
+       
+        </body>
+    
+</html>
