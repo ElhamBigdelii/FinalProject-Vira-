@@ -1,0 +1,31 @@
+{% extends 'base_withot_footer.html' %}
+
+
+{% block content %}
+
+<div class="edit_profile_background">
+    <div class="form_div_loginsiup">
+        <div class="titr_login_signup">
+            <p>ویرایش اطلاعات</p>
+        </div>
+        <div class="login_signupformss">
+            <form class="site-form"  method="POST">
+                {% csrf_token %}
+
+              
+                {% for field in form %}
+                <div class="row">
+                  <label for="{{ field.name }}">{{ field.label}}</label>{{ field }}
+               </div>
+                {% endfor %}
+
+
+                    <br><br><input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ویرایش">
+            </form>
+                <input style="float: left ;" id="vorod" class="btn22 success22" type="input" ,="" value="انصراف">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

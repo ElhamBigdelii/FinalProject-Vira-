@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="{% static 'myjs.js' %}"></script>
+        <!حذف کردن دایوهای موجود و نمایش فرم ویرایش>
+        <script> 
+            $(document).ready(function(){
+                $(".edite_profile").hide();
+                $(".virayesh1").click(function(){
+                    $(".box_form_profile_kheiriye").hide();
+                    $(".left_sotoon").hide();
+                    $(".edite_profile").show(1000);
+                });
+            });
+
+            $(document).ready(function(){
+                $(".virayesh0").click(function(){
+                    $(".box_form_profile_kheiriye").show(1000);
+                    $(".left_sotoon").show(1000);
+                    $(".edite_profile").hide();
+                });
+            });
+
+
+        </script>
+<style>
+input {
+  width: 60%;
+  padding: 8px;
+  font-size: 15px;
+  border: 1px solid #ffffff;
+  border-radius: 15px;
+  text-align: right;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  color: rgb(138, 138, 138);
+  float: right ;
+  box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.05);
+  
+  padding-top: 2px;
+}
+</style>
+    </head>
+
+        <body >
+
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: fixed; display: flex; width: 100%;  ">
+                <!-- Brand -->
+                <nav>
+                    <ul>
+                        <li>
+                           <form action="{% url 'accounts:logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-Defoult" type="submit">خروج</button>
+                           </form> 
+                        </li>
+                    </ul>
+                </nav>
+              
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#sesoote">کمک سه‌سوته</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'charity:addCharity' %}">ثبت خیریه</a>
+          </li>
+      
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              انواع کمک
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'charity:golrizooon' %}">گلریزون‌ها</a>
+              <a class="dropdown-item" href="#">کمپین‌ها</a>
+              <a class="dropdown-item" href="{% url 'charity:little_dream' %}">آرزوهای‌کوچک</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:signup' %}">ورود/ثبت‌‌نام</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index:show_index' %}">صفحه اصلی</a>
+          </li>
+          <a class="navbar-brand " href="#">چتری برای زندگی</a>
+                </ul>
+    
+              </nav>
+            <br><br>
+
+            <div class="backgroundprofile_user">
+
+                <div class="rightprofile_charity">
+                    <div class="profilecirclepic">
+                    </div>
+
+                        <div class="list_meno_profile_kheirire" >
+                            <a class="virayesh0" id = "GFG" href = "#" style=" color: rgb(238, 238, 238);"><p>پروفایل</p></a>
+                            <a class="virayesh1" id = "GFG" href = "{% url 'accounts:editprofile' %}" style=" color: rgb(238, 238, 238);"><p>ویرایش پروفایل</p></a>
+                            <a id = "GFG" href = "#" style=" color: rgb(238, 238, 238);"><p>کمک‌های من</p></a>
+                            <a id = "GFG" href = "#" style=" color: rgb(238, 238, 238);"><p>پیام‌های من</p></a>
+                            {% for k in charitymodir %}
+                            {% if charitymodir %} <a id = "GFG" href = "{% url 'accounts:profile_charity' %}" style=" color: rgb(238, 238, 238);"><p> ( {{ k.name }} )خیریه من</p></a> {% endif %}
+                            <a id = "GFG" href = "#" style=" color: rgb(156, 5, 111);"><p>حذف اکانت</p></a>
+                            {% endfor %}
+
+                        </div>
+                </div>
+             
+
+                {% for post in query %}
+
+                    <div class="titr_profilr_kheiriye">
+                        <p> !"سلام "{{ post.first_name }} </p>
+                            <hr>
+                        <div class="titr_profilr_kheiriye_modir">
+                            
+                            {% if charitymodir %} <p>مدیر</p> {% endif %}
+                            {% if not charitymodir %} <p>خیر عادی</p> {% endif %}
+                        </div>
+                       
+                        
+                   
+
+                        <div class="box_form_profile_kheiriye" id="map">
+                            <div class="box_form_profile_kheiriye_right">
+                                <p  class="lable_ofprofilr_kh">نام</p>
+                                <p class="lable_ofprofilr_kh">نام خانوادگی</p>
+                                <p class="lable_ofprofilr_kh">کدملی</p>
+                                <p class="lable_ofprofilr_kh">نام کاربری</p>
+                                <p class="lable_ofprofilr_kh">تلفن</p>
+                                <p class="lable_ofprofilr_kh">ایمیل</p>
+                            </div>
+
+                            <div class="input_profile_kheiriye"><p>{{ post.first_name }}</p></div>
+                            <div class="input_profile_kheiriye">{{ post.last_name }}</div>
+                            <div class="input_profile_kheiriye">{{ post.codemeli }}</div>
+                            <div class="input_profile_kheiriye">{{ post.username }}</div>
+                            <div class="input_profile_kheiriye">{{ post.phone }}</div>
+                            <div class="input_profile_kheiriye">{{ post.email }}</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <!فرم ویرایش اطلاعات کاربر>
+                <form  method="POST" >
+                {% csrf_token %}
+    
+                    <div class="edite_profile">
+                        <div class="right_edite_profile_user">
+                            <p class="lable_virayesh_profile_kheiriye">نام</p><br>
+                            <br> <p class="lable_virayesh_profile_kheiriye">نام خانوادگی</p><br>
+                            <br> <p class="lable_virayesh_profile_kheiriye">کدملی</p><br>
+                            <br> <p class="lable_virayesh_profile_kheiriye">نام کاربری</p><br>
+                            <br><p class="lable_virayesh_profile_kheiriye">تلفن</p><br>
+                            <br> <p class="lable_virayesh_profile_kheiriye">ایمیل</p><br>
+                            <br> <p class="lable_virayesh_profile_kheiriye">رمز عبور</p><br>
+                        </div>
+                        
+                        <input placeholder="{{ post.first_name }}"  name="firstname"><br>
+                        <br><input  placeholder="{{ post.last_name }}"  name="lastname"><br>
+                        <br><input placeholder="{{ post.codemeli }}"  name="codemeli" disabled style="background-color: rgb(255, 252, 225);"><br>
+                        <br><input placeholder="{{ post.username }}" disabled style="background-color: rgb(255, 252, 225);" name="username"><br>
+                        <br><input placeholder="{{ post.phone }}"  name="phone"><br>
+                        <br><input placeholder="{{ post.email }}" name="email"><br>
+                        <br><input placeholder="{{ post.password }}"  name="password"><br>
+                        {% csrf_token %}
+                      
+
+                        <button type="submit" class="btn btn-sherkatmikonam  float-sm-none" style="width: 20%; float: left; margin-left: 50%;">ثبت</button> 
+                        <button type="button" class="btn btn-sherkatmikonam float-sm-none " style="width: 20%; float: left; margin-left: 50%; background-color: rgb(224, 73, 73);">انصراف</button> 
+                    </form>
+                    </div>
+                    <!فرم ویرایش اطلاعات کاربر>
+
+                    <div class="left_sotoon">
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <p>مقدار کمک من</p>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>215</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <p>تعداد کمک‌های من</p>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>2015</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="left_amar_profile_kheiriye">
+                            <div class="titr_left_amar_profile">
+                                <a id = "GFG" href = "#" style="color: rgb(136, 152, 180);"><p>با من تکمیل شده‌ها</p></a>
+                                <hr>
+                            </div>
+                            <div class="box_left_amar">
+                                <div class="matn_box_left_amar">
+                                    <p>3265</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}  
+            </div>
+       
+        </body>
+    
+</html>

@@ -1,0 +1,137 @@
+
+{% extends 'base_withot_footer.html' %}
+
+{% block content %}
+
+<script type="text/javascript">
+  function validateForm(){
+  var field = document.forms["form-1"]["title"].value;
+  if (field == null || field == ""){
+      alert("فیلد نام نباید خالی باشد");
+      return false;
+    }
+  }
+</script>
+
+
+<div class="right_profile_modirina">
+ 
+  <div class="profile_pic_user">
+  </div>
+  {% for charity in charitymodir %}
+  <div class="object_profile">
+      <div class="object_profile_item_name">
+          <p class="p_eleman_title_name">{{ charity.name }} <i class='fas fa-dove' style="color:rgb(111, 180, 245)"></i> </p>
+          {% for modir in query %}
+          <div class="p_eleman_title_name">
+              <a class="virayesh0" id = "GFG" href = "{% url 'accounts:profil_accounts' %}" style=" color: rgb(95, 152, 204);"> <p>{{ modir.username }} : کدملی مدیر <i class="fas fa-star" style="color:rgb(255, 200, 20)"></i></p> </a>
+          </div>
+          {% endfor %}
+          <hr>
+      </div>
+  {% endfor %}
+      <div class="object_profile_item">
+          <a class="virayesh0" id = "GFG" href = "#" style=" color: rgb(238, 238, 238);"><p class="p_eleman_title"> پروفایل   <i class="fas fa-user" style="color:rgb(179, 179, 179); font-size: 12px;"></i> </p></a>
+      </div>
+      <div class="object_profile_item">
+          <a class="virayesh1" id = "GFG" href = "{% url 'accounts:editprofile' %}" style=" color: rgb(238, 238, 238);"><p class="p_eleman_title">ویرایش پروفایل  <i class="fas fa-edit" style="color:rgb(179, 179, 179); font-size: 12px;"></i></p></a>
+      </div>
+      <div class="object_profile_item">
+          <a id = "GFG" href = "{% url 'charity:addProject' %}" style=" color: rgb(238, 238, 238);"><p class="p_eleman_title">اضافه کردن پروژه  <i class="fas fa-plus" style="color:rgb(65, 201, 121); font-size: 12px;"></i></p></a>
+      </div>
+
+      <div class="object_profile_item">
+       
+        <a id = "GFG" href = "{% url 'accounts:profile_charity' %}" style=" color: rgb(238, 238, 238);"><p class="p_eleman_title">  پروژه‌های من  <i class='fas fa-heart' style="color:rgb(240, 116, 116); font-size: 12px;"></i></p></a> 
+        
+      </div>
+
+      <div class="object_profile_item">
+          <a id = "GFG" href = "#" style=" color: rgb(156, 5, 111);"><p class="p_eleman_title">حذف خیریه  <i class="fa fa-times" aria-hidden="true" style="color:rgb(179, 179, 179); font-size: 12px;"></i></p></a>    
+      </div>
+      
+
+  </div>
+</div>
+<div class="background_add_p">  
+<div class="lefteleman">
+<div class="add_project"> 
+ <div class="form_div_addproject">
+    <div class="titr_login_signup">
+      <p>اضافه کردن پروژه</p>
+    </div>
+
+ <form name="form-1" action="{%url 'charity:addProject'%}" method="POST" onsubmit="return validateForm();">
+    {% csrf_token %}
+    
+
+    <label  class="laballoginsignup" for="id_title">تیتر</label> <input class="form-control" type="text" name="title" maxlength="50"  id="idtitle">
+    <label  class="laballoginsignup" for="id_cost">هزینه</label> <input class="form-control" type="number" name="cost" step="10000" min="1000"  id="id_cost">
+    <label  class="laballoginsignup" for="id_description">توضیحات</label> <textarea class="form-control" name="description" cols="40" rows="6"  id="id_description"></textarea>
+    <br><label  class="laballoginsignup" for="id_projectType">نوع پروژه</label> 
+
+    <div class="selectedbox">
+      <div class="projectType">
+      <select name="projectType" id="id_projectType">
+
+        <option value="" class="rhth" selected="">نوع پروژه را انتخاب کنید</option>
+      
+        <option value="1" id="selectionone" class="golrizon ">گلریزون‌ها</option>
+      
+        <option value="2" id="selectiontwo" class="arezo ">آرزوهای کوچک</option>
+      
+        <option value="3" id="selectionthree" class="campagin ">کمپین‌ها</option>
+      
+      </select>
+      </div>  
+          <br><label class="laballoginsignup" for="id_projectType ">دسته بندی</label> 
+         
+      <div class="detailType">
+        <select name="dastebanamdy_LD" id="id_dastebanamdy_LD" >
+     
+        <option value="" class="rhth23" selected="">انتخاب دسته بندی</option>
+        
+        <option value="1" class="selectors golrizon ">بیکاری </option>
+        <option value="2" class="selectors golrizon ">سیل زدگان</option>
+        <option value="3" class="selectors golrizon ">زلزله زده</option>
+        <option value="4" class="selectors golrizon ">تحصیلی</option>
+        <option value="5" class="selectors golrizon ">جهیزیه</option>
+        <option value="6" class="selectors golrizon ">مسکن</option>
+        <option value="7" class="selectors golrizon ">بیماری</option>
+        
+        <option value="8" class="selectors arezo">لوازم التحریر</option>
+        <option value="9" class="selectors arezo">اسباب بازی</option>
+        <option value="10" class="selectors arezo">لوازم ورزشی</option>
+        <option value="11" class="selectors arezo">کتاب</option>
+      
+        <option value="12" class="selectors campagin">مالی</option>
+        <option value="13" class="selectors campagin">جهادی</option>
+        <option value="14" class="selectors campagin">فرهنگی</option>
+      
+      </select>
+      </div>
+      </div>
+
+    <br><br><br><input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ثبت پروژه">
+   </form>
+   <input style="float: left ;" id="enseraf" class="btn22 success22" type="input" ,="" value="انصزاف"><br><br><br>
+</div>
+</div>
+
+
+<script>
+   $(document).ready(function () {    
+       var allOptions = $('#id_dastebanamdy_LD option')
+       $('#id_projectType').change(function () {
+           $('#id_dastebanamdy_LD option').remove()
+           var classN = $('#id_projectType option:selected').prop('class');
+           var opts = allOptions.filter('.' + classN);
+           $.each(opts, function (i, j) {
+               $(j).appendTo('#id_dastebanamdy_LD');
+           });
+       });
+   });
+   </script>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+
+{% extends 'base_withot_footer.html' %}
+
+
+{% block content %}
+<div class="right_profile_modirina">
+
+</div>
+
+
+<div class="background_add_p">       
+<div class="add_project"> 
+
+  <div class="form_div_addproject">
+    <div class="titr_login_signup">
+      <p>اضافه کردن خیریه</p>
+    </div>
+        <form name="addform" class="site-form"  style="height:580px; " action="{% url 'charity:addCharity' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <form name="addform" class="site-form" style="height: 500px; background-color: rgb(253, 238, 227);" action="http://127.0.0.1:8000/charity/add_charity/" method="POST" enctype="multipart/form-data">
+  
+                <label for="id_name">نام</label><input class="form-control" type="text" name="name" maxlength="20" required="" id="id_name">
+                <label for="id_address">آدرس</label><input class="form-control" type="text" name="address" maxlength="60" required="" id="id_address">
+                <label for="id_sabt_number">شماره ثبت</label><input class="form-control" type="text" name="sabt_number" maxlength="30" required="" id="id_sabt_number">
+                <label for="id_description">توضیحات</label><textarea class="form-control" name="description" cols="40" rows="6" required="" id="id_description"></textarea>
+                <label for="id_web">وبسایت</label><input class="form-control" type="text" name="web" maxlength="200" required="" id="id_web">
+                <label for="id_photo_sanad">تصویر سند</label><input class="form-control" type="file" name="photo_sanad" accept="image/*" id="id_photo_sanad">
+                <br><br>         
+          <input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ثبت خیریه">
+              </form>
+              <input style="float: left ;" id="sabtnam" class="btn22 success22" type="input" ,="" value="انصراف">
+                  <br><br><br><br><br>
+            </div>
+            
+          </div>
+         
+  </div> 
+{% endblock %}

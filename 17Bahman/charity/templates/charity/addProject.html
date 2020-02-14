@@ -1,0 +1,90 @@
+
+{% extends 'base_withot_footer.html' %}
+
+{% block content %}
+
+
+<div class="right_profile_modirina">
+
+</div>
+<div class="background_add_p">  
+<div class="lefteleman">
+<div class="add_project"> 
+ <div class="form_div_addproject">
+    <div class="titr_login_signup">
+      <p>اضافه کردن پروژه</p>
+    </div>
+ <form action="{%url 'charity:addProject'%}" method="POST">
+    {% csrf_token %}
+    
+
+    <label  class="laballoginsignup" for="id_title">تیتر</label> <input class="form-control" type="text" name="title" maxlength="50" required="" id="id_title">
+    <label  class="laballoginsignup" for="id_cost">هزینه</label> <input class="form-control" type="number" name="cost" step="10000" min="1000" required="" id="id_cost">
+    <label  class="laballoginsignup" for="id_description">توضیحات</label> <textarea class="form-control" name="description" cols="40" rows="6" required="" id="id_description"></textarea>
+    <br><label  class="laballoginsignup" for="id_projectType">نوع پروژه</label> 
+
+    <div class="selectedbox">
+      <div class="projectType">
+      <select name="projectType" id="id_projectType">
+
+        <option value="" class="rhth" selected="">نوع پروژه را انتخاب کنید</option>
+      
+        <option value="1" id="selectionone" class="golrizon ">گلریزون‌ها</option>
+      
+        <option value="2" id="selectiontwo" class="arezo ">آرزوهای کوچک</option>
+      
+        <option value="3" id="selectionthree" class="campagin ">کمپین‌ها</option>
+      
+      </select>
+      </div>  
+          <br><label class="laballoginsignup" for="id_projectType ">دسته بندی</label> 
+         
+      <div class="detailType">
+        <select name="dastebanamdy_LD" id="id_dastebanamdy_LD" >
+     
+        <option value="" class="rhth23" selected="">انتخاب دسته بندی</option>
+        
+        <option value="1" class="selectors golrizon ">بیکاری </option>
+        <option value="2" class="selectors golrizon ">سیل زدگان</option>
+        <option value="3" class="selectors golrizon ">زلزله زده</option>
+        <option value="4" class="selectors golrizon ">تحصیلی</option>
+        <option value="5" class="selectors golrizon ">جهیزیه</option>
+        <option value="6" class="selectors golrizon ">مسکن</option>
+        <option value="7" class="selectors golrizon ">بیماری</option>
+        
+        <option value="8" class="selectors arezo">لوازم التحریر</option>
+        <option value="9" class="selectors arezo">اسباب بازی</option>
+        <option value="10" class="selectors arezo">لوازم ورزشی</option>
+        <option value="11" class="selectors arezo">کتاب</option>
+      
+        <option value="12" class="selectors campagin">مالی</option>
+        <option value="13" class="selectors campagin">جهادی</option>
+        <option value="14" class="selectors campagin">فرهنگی</option>
+      
+      </select>
+      </div>
+      </div>
+
+    <br><br><br><input  style="float: right ;" class="btn22 success33" type="submit" ,="" value="ثبت پروژه">
+   </form>
+   <input style="float: left ;" id="enseraf" class="btn22 success22" type="input" ,="" value="انصزاف"><br><br><br>
+</div>
+</div>
+
+
+<script>
+   $(document).ready(function () {    
+       var allOptions = $('#id_dastebanamdy_LD option')
+       $('#id_projectType').change(function () {
+           $('#id_dastebanamdy_LD option').remove()
+           var classN = $('#id_projectType option:selected').prop('class');
+           var opts = allOptions.filter('.' + classN);
+           $.each(opts, function (i, j) {
+               $(j).appendTo('#id_dastebanamdy_LD');
+           });
+       });
+   });
+   </script>
+</div>
+</div>
+{% endblock %}

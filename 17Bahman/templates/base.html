@@ -1,0 +1,105 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <body>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: fixed; display: flex;  width: 100%; ">
+                <!-- Brand -->
+                <nav>
+                    <ul>
+                        <li>
+                           <form action="{% url 'accounts:logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-Defoult" type="submit">خروج</button>
+                           </form> 
+                        </li>
+                    </ul>
+                </nav>
+              
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#sesoote">کمک سه‌سوته</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'charity:addCharity' %}">ثبت خیریه</a>
+                  </li>
+              
+                  <!-- Dropdown -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      انواع کمک
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'charity:golrizooon' %}">گلریزون‌ها</a>
+                      <a class="dropdown-item" href="#">کمپین‌ها</a>
+                      <a class="dropdown-item" href="{% url 'charity:little_dream' %}">آرزوهای‌کوچک</a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:signup' %}">ورود/ثبت‌‌نام</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index:show_index' %}">صفحه اصلی</a>
+                  </li>
+                  <a class="navbar-brand " href="#">چتری برای زندگی</a>
+                </ul>
+    
+              </nav>
+
+
+
+            
+            {% block content %}
+            {% endblock %}
+            <!................................. FOOTER ........................>
+            <div class="footerfinal">
+                <div class="footerfinal_content">
+                    <div class="footerfinal_content_title">
+                         </p>شبکه‌های اجتماعی<p>
+                         <hr/>
+                    </div>
+                        <div class="footerfinal_content_detail">
+                        </div>
+                </div>
+            
+                 <div class="footerfinal_content2">
+                     <div class="footerfinal_content_title">
+                     </p>درباره چتری برای زندگی<p>
+                     <hr/>
+                     </div>
+                        <div class="footerfinal_content_detail">
+                            <p>چتری برای زندگی بستری امن برای کمک به نیازمندان است. انواع نیازنمندی‌ها در این بستر تفکیک شده‌اند به گلریزون‌ها، آرزوهای کوچک و کمپین ها</p>
+                            <p> !به ما بپیوندید! به کمکتون نیاز داریم
+                            </p>
+                            <button type="button" class="btn btn-sabtkheireye float-sm-none" style=" color: rgb(23, 104, 141) ;background-image: linear-gradient(-90deg, #68a9d4, #8edae2);">عضویت</button>
+            
+                        </div>
+                </div>
+            
+                 <div class="footerfinal_content3">
+                    <div class="footerfinal_content_title">
+                        </p>دسترسی سریع<p>
+                        <hr/>
+                     </div>
+                        <div class="footerfinal_content_detail">
+                            <a href=""><p>درباره ما</p></a>
+                             <a href=""><p>تماس با ما</p></a>
+                        </div>
+                </div>
+            </div>
+            
+            </body>
+
+
+    </head>
+</html>
